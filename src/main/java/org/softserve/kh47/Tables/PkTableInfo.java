@@ -1,10 +1,15 @@
 package org.softserve.kh47.Tables;
 
+import java.util.List;
+
 class PkTableInfo extends TableInfo {
 
     public PkTableInfo(Class<?> clazz) {
         super(clazz);
     }
 
-    // TODO: getIdColumns()
+    List<String> getIdColumns() {
+        return List.of("");
+        // TODO
+    }
 }

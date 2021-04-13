@@ -1,6 +1,6 @@
 package org.softserve.kh47.Tables;
 
-import OrmArchivarius.Annotations.Entity;
+import org.softserve.kh47.Annotations.Entity;
 
 abstract class TableInfo {
     protected String tableName;

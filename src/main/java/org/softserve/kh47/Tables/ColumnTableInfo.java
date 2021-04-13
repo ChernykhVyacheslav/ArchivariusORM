@@ -1,6 +1,6 @@
 package org.softserve.kh47.Tables;
 
-import OrmArchivarius.Annotations.Column;
+import org.softserve.kh47.Annotations.Column;
 
 import java.lang.reflect.Field;
 import java.sql.JDBCType;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class ColumnTableInfo extends OrmArchivarius.Tables.TableInfo {
+class ColumnTableInfo extends TableInfo {
     private static Map<Class<?>, JDBCType> javaToSqlType = new HashMap<>();
     static {
         javaToSqlType.put(int.class, JDBCType.INTEGER);

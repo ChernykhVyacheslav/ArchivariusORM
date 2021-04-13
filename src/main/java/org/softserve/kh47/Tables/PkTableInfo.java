@@ -1,6 +1,6 @@
 package org.softserve.kh47.Tables;
 
-class PkTableInfo extends OrmArchivarius.Tables.TableInfo {
+class PkTableInfo extends TableInfo {
 
     public PkTableInfo(Class<?> clazz) {
         super(clazz);

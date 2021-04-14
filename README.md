@@ -1,1 +1,2 @@
-# ArchivariusORM
+# archivarius
+Implementation of our own ORM

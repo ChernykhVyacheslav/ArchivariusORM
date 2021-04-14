@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 
 public class TableGenerator {
 
-    private static final String CREATE_TABLE_SQL = "CREATE TABLE %s (id SERIAL PRIMARY KEY, %s)";
+    //id SERIAL PRIMARY KEY,
+    private static final String CREATE_TABLE_SQL = "CREATE TABLE %s (%s)";
     private static final String CREATE_PK_SQL = "ALTER TABLE %1$s\n" +
             "ADD CONSTRAINT PK_%1$s PRIMARY KEY (%2$s);";
 

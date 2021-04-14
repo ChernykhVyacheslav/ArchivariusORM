@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Optional;
 
 public class OrmManager {
@@ -52,11 +53,15 @@ public class OrmManager {
     <T> List<T> findAll() throws SQLException;
 
     private static class MapperRowToObject {
+        static Object parse(Map<String, Object>) {
 
+        }
     }
 
     private static class MapperObjectToRow {
+        static Map<String, Object> parse(Object o) {
 
+        }
     }
 
 //    public void insertRecord() throws SQLException {

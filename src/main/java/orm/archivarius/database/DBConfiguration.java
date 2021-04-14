@@ -7,25 +7,48 @@ public class DBConfiguration {
     private String connectionDriver;
     private String databaseName;
 
-    public DBConfiguration() {}
+    public DBConfiguration() {
+    }
 
-    public String getUrl() { return url; }
-    public String getUser() { return user; }
+    public String getUrl() {
+        return url;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
     public String getPassword() {
         return this.password;
     }
-    public String getConnectionDriver() { return connectionDriver; }
-    public String getDatabaseName() { return databaseName; }
 
-    public void setUrl(String url) { this.url = url; }
+    public String getConnectionDriver() {
+        return connectionDriver;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public void setUser(String user) {
         this.user = user;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setConnectionDriver(String connectionDriver) { this.connectionDriver = connectionDriver; }
-    public void setDatabaseName(String databaseName) { this.databaseName = databaseName; }
+
+    public void setConnectionDriver(String connectionDriver) {
+        this.connectionDriver = connectionDriver;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
 
     @Override
     public String toString() {

@@ -1,15 +1,16 @@
 package orm.archivarius.database;
 
+
 import orm.archivarius.database.util.PropertiesReader;
 
 import java.util.Objects;
 
-public class MySQL extends DBConfiguration{
+public class MySQL extends DBConfiguration {
     private static MySQL mysqlInstance;
     public PropertiesReader propertiesReader;
 
-    public MySQL(){
-        this.propertiesReader = new PropertiesReader("mysql.properties",this);
+    public MySQL() {
+        this.propertiesReader = new PropertiesReader("mysql.properties", this);
     }
 
     public static MySQL getInstance() {

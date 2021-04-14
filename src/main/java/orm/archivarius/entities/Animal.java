@@ -5,6 +5,7 @@ import orm.archivarius.annotations.Entity;
 import orm.archivarius.annotations.Id;
 import orm.archivarius.annotations.Table;
 
+
 @Entity
 @Table(value = "animals_table")
 public class Animal {

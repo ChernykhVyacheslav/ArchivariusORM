@@ -1,2 +1,2 @@
-# archivarious
-Implementation of own ORM
+# archivarius
+Implementation of our own ORM

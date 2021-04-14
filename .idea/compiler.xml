@@ -9,6 +9,8 @@
         <module name="ArchivariusORM" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="10" />
+    <bytecodeTargetLevel>
+      <module name="ArchivariusORM" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

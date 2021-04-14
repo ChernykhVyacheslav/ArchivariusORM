@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class ColumnTableInfo extends TableInfo {
+public class ColumnTableInfo extends TableInfo {
     private Map<String, JDBCType> columns = new LinkedHashMap<>();
 
     public ColumnTableInfo(Class<?> c) throws ClassNotFoundException {
@@ -38,10 +38,9 @@ class ColumnTableInfo extends TableInfo {
         }
     }
 
-    @Override
-    public Map<String, Object> generateTab() {
-        res.put("TableName", tableName);
-        res.put("Columns", getColumns());
-        return res;
-    }
+//    @Override
+//    public Map<String, JDBCType> generateTab() {
+////        res.put("Columns", getColumns());
+//        return getColumns();
+//    }
 }

@@ -1,26 +1,32 @@
 package orm.archivarius.table.config;
 
-import orm.archivarius.table.repository.impl.AnimalRepositoryImpl;
-import orm.archivarius.table.service.AnimalService;
-import orm.archivarius.table.service.impl.AnimalServiceImpl;
+import orm.archivarius.database.ConnectionDao;
+import orm.archivarius.database.MySQL;
 
 import java.sql.Connection;
+import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
 public class TableGenerator {
+    Connection connection;
+    ConnectionDao connectionDao;
+
     private PriorityQueue<DdlExpression> ddlPriorityQueue = new PriorityQueue<DdlExpression>(
             Comparator.comparing(DdlExpression::getPriority)
     );
 
-    TableGenerator(Stream<TableInfo> stream)  {
+    public TableGenerator(Stream<TableInfo> stream)  {
         stream.map(DdlExpression::from).forEachOrdered(ddlPriorityQueue::add);
+        connection = null;
+        connectionDao = new ConnectionDao(new MySQL());
     }
 
-    void executeDdl() throws SQLException {
-        Connection con = null;
+    public void executeDdl() throws SQLException {
+        Connection con = connectionDao.getConnection();
         var st = con.createStatement();
         while(!ddlPriorityQueue.isEmpty()){
             var ddExpression = ddlPriorityQueue.poll();
@@ -55,11 +61,21 @@ public class TableGenerator {
     }
 
     static class DdlExpressionTable extends DdlExpression{
-        AnimalService animalService = new AnimalServiceImpl(new AnimalRepositoryImpl());
+        //AnimalService animalService = new AnimalServiceImpl(new AnimalRepositoryImpl());
 
         public DdlExpressionTable(ColumnTableInfo tableInfo) throws SQLException {
             priority = 1;
-            ddl = "create table ///";
+            ddl = String.format("CREATE TABLE %s (", tableInfo.getTableInfo());
+            for (Map.Entry entry : tableInfo.getColumns().entrySet()) {
+                    ddl += entry.getKey() + " ";
+                if(entry.getValue() == JDBCType.VARCHAR){
+                    ddl += entry.getValue() + "(200),";
+                } else {
+                    ddl += entry.getValue() +",";
+                }
+            }
+            ddl = ddl.substring(0, ddl.length() -1);
+            ddl += ");";
         }
     }
 
@@ -67,7 +83,7 @@ public class TableGenerator {
     static class DdlExpressionPk extends DdlExpression{
         public DdlExpressionPk(PkTableInfo tableInfo){
             priority = 2;
-            ddl = "alter table add primary key";
+            tableInfo.getIdColumns().forEach((key, value) -> ddl = "ALTER TABLE " + tableInfo.getTableInfo() + " ADD PRIMARY KEY("+key+");");
         }
     }
 

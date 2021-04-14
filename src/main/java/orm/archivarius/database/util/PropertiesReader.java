@@ -1,6 +1,6 @@
-package org.softserve.kh47.database.util;
+package orm.archivarius.database.util;
 
-import org.softserve.kh47.database.DBConfiguration;
+import orm.archivarius.database.DBConfiguration;
 
 import java.io.IOException;
 import java.io.InputStream;

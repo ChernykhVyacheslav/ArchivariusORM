@@ -1,6 +1,6 @@
-package org.softserve.kh47.entity_scanner;
+package orm.archivarius;
 
-import org.softserve.kh47.annotations.Entity;
+import orm.archivarius.annotations.Entity;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class EntityScanner {
                 .map(Path::toString)
                 .filter(i -> i.endsWith(".class"))
                 .map(i -> i.replace("\\", ".").replace("..target.classes.", "").replace(".class", ""))
-                .filter(i -> i.startsWith("org.softserve.kh47"))
+                .filter(i -> i.startsWith("orm.archivarius"))
                 .map(i -> {
                     try {
                         return Class.forName(i);
@@ -25,5 +25,4 @@ public class EntityScanner {
                     return null;
                 }).filter(Objects::nonNull).filter(i -> i.getAnnotation(Entity.class) != null);
     }
-
 }

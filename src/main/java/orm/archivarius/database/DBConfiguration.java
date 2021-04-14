@@ -1,4 +1,4 @@
-package org.softserve.kh47.database;
+package orm.archivarius.database;
 
 public class DBConfiguration {
     private String url;

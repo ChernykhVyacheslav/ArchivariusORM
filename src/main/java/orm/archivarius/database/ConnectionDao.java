@@ -1,6 +1,6 @@
-package org.softserve.kh47.database;
+package orm.archivarius.database;
 
-import org.softserve.kh47.logger.ProgramLogger;
+import orm.archivarius.logger.ProgramLogger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

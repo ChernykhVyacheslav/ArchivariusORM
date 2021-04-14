@@ -1,6 +1,6 @@
-package org.softserve.kh47.database;
+package orm.archivarius.database;
 
-import org.softserve.kh47.database.util.PropertiesReader;
+import orm.archivarius.database.util.PropertiesReader;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package org.softserve.kh47.table;
+package orm.archivarius.table;
 
 class Utility {
     public static String normalizeName(String name) {

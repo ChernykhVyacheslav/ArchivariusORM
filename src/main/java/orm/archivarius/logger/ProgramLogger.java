@@ -1,4 +1,4 @@
-package org.softserve.kh47.logger;
+package orm.archivarius.logger;
 
 import java.util.Objects;
 

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesReader {
-    public PropertiesReader(String filename, DBConfiguration conf){
+    public PropertiesReader(String filename, DBConfiguration conf) {
         try (InputStream input = getClass().getClassLoader().getResourceAsStream(filename)) {
             Properties props = new Properties();
             props.load(input);

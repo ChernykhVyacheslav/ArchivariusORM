@@ -1,17 +1,17 @@
 package orm.archivarius.tables.config;
 
 import orm.archivarius.database.ConnectionDao;
+import orm.archivarius.database.MySQL;
 import orm.archivarius.database.PostgresSQL;
 
 import java.sql.Connection;
+import java.sql.JDBCType;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class TableGenerator {
+    ConnectionDao connectionDao;
 
     //id SERIAL PRIMARY KEY,
     private static final String CREATE_TABLE_SQL = "CREATE TABLE %s (%s)";
@@ -23,13 +23,14 @@ public class TableGenerator {
     );
 
     public TableGenerator(Stream<TableInfo> tableInfoStream) {
+        connectionDao = new ConnectionDao(new PostgresSQL());
         tableInfoStream
                 .map(DdlExpression::from)
                 .forEachOrdered(ddlPq::add);
     }
 
     public void executeDDL() throws SQLException {
-        Connection con = new ConnectionDao(new PostgresSQL()).getConnection();
+        Connection con = connectionDao.getConnection();
         var st = con.createStatement();
         while (!ddlPq.isEmpty()) {
             st.execute(ddlPq.poll().ddl);
@@ -76,20 +77,16 @@ public class TableGenerator {
 
     static class DdlExpressionPk extends DdlExpression {
         public DdlExpressionPk(PkTableInfo pkTableInfo) {
-            String tableName = pkTableInfo.getTableName();
-            List<String> idColumnNames = pkTableInfo.getIdColumns();
-
-            ddl = String.format(CREATE_PK_SQL,
-                    tableName,
-                    String.join(",", idColumnNames));
             priority = 2;
+            pkTableInfo.getIdColumns().forEach((key, value) ->
+                    ddl = String.format(CREATE_PK_SQL, pkTableInfo.getTableName(), key));
         }
     }
 
     static class DdlExpressionFk extends DdlExpression {
         public DdlExpressionFk(FkTableInfo fkTableInfo) {
-            // TODO
             priority = 3;
+            ddl = "alter table add foreign key....//"; // String.format()
         }
     }
 }

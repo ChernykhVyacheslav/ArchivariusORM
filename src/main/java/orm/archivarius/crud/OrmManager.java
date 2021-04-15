@@ -10,59 +10,59 @@ import java.util.Optional;
 
 public class OrmManager {
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO %$1s" +
-            "  (%$2s) VALUES " +
-            " (%$3s);";
-    /**
-     * Find by id your Entity
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    <T> Optional<T> find(Integer id, Class<T> tClass) throws SQLException;
-
-    /**
-     * save entity
-     * @param t
-     * @return
-     * @throws SQLException
-     */
-    <T> boolean save(T t) throws SQLException;
-
-    /**
-     * update entity
-     * @param t
-     * @return
-     * @throws SQLException
-     */
-    <T> boolean update(T t) throws SQLException;
-
-    /**
-     * delete entity
-     * @param t
-     * @return
-     * @throws SQLException
-     */
-    <T> boolean delete(T t) throws SQLException;
-
-    /**
-     * return a List of Entities
-     * @return
-     * @throws SQLException
-     */
-    <T> List<T> findAll() throws SQLException;
-
-    private static class MapperRowToObject {
-        static Object parse(Map<String, Object>) {
-
-        }
-    }
-
-    private static class MapperObjectToRow {
-        static Map<String, Object> parse(Object o) {
-
-        }
-    }
+//    private static final String INSERT_USERS_SQL = "INSERT INTO %$1s" +
+//            "  (%$2s) VALUES " +
+//            " (%$3s);";
+//    /**
+//     * Find by id your Entity
+//     * @param id
+//     * @return
+//     * @throws SQLException
+//     */
+//    <T> Optional<T> find(Integer id, Class<T> tClass) throws SQLException;
+//
+//    /**
+//     * save entity
+//     * @param t
+//     * @return
+//     * @throws SQLException
+//     */
+//    <T> boolean save(T t) throws SQLException;
+//
+//    /**
+//     * update entity
+//     * @param t
+//     * @return
+//     * @throws SQLException
+//     */
+//    <T> boolean update(T t) throws SQLException;
+//
+//    /**
+//     * delete entity
+//     * @param t
+//     * @return
+//     * @throws SQLException
+//     */
+//    <T> boolean delete(T t) throws SQLException;
+//
+//    /**
+//     * return a List of Entities
+//     * @return
+//     * @throws SQLException
+//     */
+//    <T> List<T> findAll() throws SQLException;
+//
+//    private static class MapperRowToObject {
+//        static Object parse(Map<String, Object>) {
+//
+//        }
+//    }
+//
+//    private static class MapperObjectToRow {
+//        static Map<String, Object> parse(Object o) {
+//
+//        }
+//    }
 
 //    public void insertRecord() throws SQLException {
 //        System.out.println(INSERT_USERS_SQL);

@@ -1,4 +1,4 @@
-package orm.archivarius;
+package orm.archivarius.tables.config;
 
 import orm.archivarius.annotations.Entity;
 

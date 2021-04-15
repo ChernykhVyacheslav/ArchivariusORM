@@ -1,6 +1,5 @@
 package orm.archivarius.database;
 
-
 import orm.archivarius.logger.ProgramLogger;
 
 import java.sql.Connection;

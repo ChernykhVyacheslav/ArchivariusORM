@@ -5,25 +5,15 @@ import orm.archivarius.annotations.Column;
 import java.lang.reflect.Field;
 import java.sql.JDBCType;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ColumnTableInfo extends TableInfo {
-    private static Map<Class<?>, JDBCType> javaToSqlType = new HashMap<>();
-    static {
-        javaToSqlType.put(int.class, JDBCType.INTEGER);
-        javaToSqlType.put(Integer.class, JDBCType.INTEGER);
-        javaToSqlType.put(long.class, JDBCType.BIGINT);
-        javaToSqlType.put(Long.class, JDBCType.BIGINT);
-        javaToSqlType.put(String.class, JDBCType.VARCHAR);
-    }
-
     private Map<String, JDBCType> columns = new LinkedHashMap<>();
 
-    public ColumnTableInfo(Class<?> clazz) {
-        super(clazz);
-        parse(clazz);
+    public ColumnTableInfo(Class<?> c) {
+        super(c);
+        parse(c);
     }
 
     public Map<String, JDBCType> getColumns() {
@@ -33,7 +23,7 @@ public class ColumnTableInfo extends TableInfo {
     private void parse(Class<?> clazz) {
         for (var field : clazz.getDeclaredFields()) {
             parse(field);
-        };
+        }
     }
 
     private void parse(Field field) {
@@ -43,11 +33,10 @@ public class ColumnTableInfo extends TableInfo {
             if (columnName.isBlank()) {
                 columnName = field.getName();
             }
-            var sqlType = javaToSqlType.getOrDefault(
+            var sqlType = javaToSQLType.getOrDefault(
                     field.getType(),
-                    JDBCType.OTHER); // TODO:
+                    JDBCType.OTHER);
             columns.put(columnName, sqlType);
         }
-        // TODO: process single Id annotation as well
     }
 }

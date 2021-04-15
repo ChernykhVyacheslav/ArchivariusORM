@@ -2,7 +2,7 @@ package orm.archivarius.tables.config;
 
 import java.util.List;
 
-class PkTableInfo extends TableInfo {
+public class PkTableInfo extends TableInfo {
 
     public PkTableInfo(Class<?> clazz) {
         super(clazz);
